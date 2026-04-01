@@ -1,0 +1,21 @@
+// Lendsqr design tokens
+$primary: #39CDCC;
+$primary-dark: #213F7D;
+$text-main: #545F7D;
+$text-dark: #213F7D;
+$white: #FFFFFF;
+$background: #FBFBFB;
+$border: #F0F0F0;
+
+// Reset
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Karu', sans-serif;
+  background: $background;
+  color: $text-main;
+}
