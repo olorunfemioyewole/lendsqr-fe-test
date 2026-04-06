@@ -1,9 +1,33 @@
 export interface User {
   id: string;
-  organization: string;
   username: string;
+  organization: string;
   email: string;
   phoneNumber: string;
   createdAt: string;
   status: 'active' | 'inactive' | 'pending' | 'blacklisted';
+  fullName?: string;
+  bvn?: string;
+  gender?: string;
+  maritalStatus?: string;
+  children?: string;
+  typeOfResidence?: string;
+  levelOfEducation?: string;
+  employmentStatus?: string;
+  sectorOfEmployment?: string;
+  durationOfEmployment?: string;
+  officeEmail?: string;
+  monthlyIncome?: string;
+  loanRepayment?: string;
+  twitter?: string;
+  facebook?: string;
+  instagram?: string;
+  guarantorName?: string;
+  guarantorPhone?: string;
+  guarantorEmail?: string;
+  guarantorRelationship?: string;
+  tier?: number;
+  accountBalance?: string;
+  accountNumber?: string;
+  bank?: string;
 }
