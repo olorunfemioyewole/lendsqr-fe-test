@@ -1,0 +1,372 @@
+@use '../../styles/variables' as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  width: 100%;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: $text-dark;
+}
+
+// Metrics
+.metrics {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: .75rem;
+  border: solid 1px rgba(33,63,125,.06);
+  width: 100%;
+  background: $white;
+  border-radius: .25rem;
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+  height: 10rem;
+  padding-left: 1.875rem;
+
+  span {
+    font-size: .875rem;
+    color: $text-main;
+  }
+
+  .value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $text-dark;
+  }
+}
+
+@mixin icon-bubble($color) {
+  background: #{$color}20;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img { width: 1.5rem; height: 1.5rem; }
+}
+
+.usersIcon { @include icon-bubble(#DF18FF); }
+.activeUsersIcon { @include icon-bubble(#5718FF); }
+.loanUsersIcon { @include icon-bubble(#F55F44); }
+.savingsUsersIcon { @include icon-bubble(#FF3366); }
+
+.data {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.tableWrapper {
+  background: $white;
+  border: solid 1px rgba(33,63,125,.06);
+  border-radius: .25rem;
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+  overflow-x: auto;
+  max-height: 640px;
+  overflow-y: auto;
+}
+
+.table {
+  min-width: 900px;
+  padding: 1.875rem;
+  position: relative;
+}
+
+.heading,
+.body {
+  display: grid;
+  grid-template-columns: 1.2fr 1.1fr 1.6fr 1.3fr 1.6fr 1fr 2rem;
+  align-items: center;
+  width: 100%;
+}
+
+.heading {
+  font-size: .75rem;
+  font-weight: 600;
+  color: $text-main;
+  padding-bottom: 1.5rem;
+  border-bottom: solid 1px rgba(33,63,125,.1);
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+}
+
+.body {
+  font-size: .875rem;
+  padding: 1.25rem 0;
+  border-bottom: solid 1px rgba(33,63,125,.1);
+  color: $text-main;
+
+  &:last-child { border-bottom: none; }
+}
+
+// Status badges
+.badge {
+  padding: .35rem .75rem;
+  border-radius: 100px;
+  font-size: .75rem;
+  font-weight: 400;
+  text-transform: capitalize;
+
+  &.active      { background: #39CD6220; color: #39CD62; }
+  &.inactive    { background: #54597720; color: #545F7D; }
+  &.pending     { background: #E9B20020; color: #E9B200; }
+  &.blacklisted { background: #E4033B20; color: #E4033B; }
+}
+
+// Row action menu
+.menuWrapper {
+  position: relative;
+  width: 2rem;
+  flex-shrink: 0;
+}
+
+.menuBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+
+  img { height: 1.25rem; }
+}
+
+.menuDropdown {
+  position: absolute;
+  right: 0;
+  top: 1.75rem;
+  background: $white;
+  border-radius: .5rem;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.12);
+  z-index: 50;
+  min-width: 180px;
+  padding: .5rem 0;
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    width: 100%;
+    padding: .75rem 1.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: .875rem;
+    color: $text-main;
+    font-family: inherit;
+    text-align: left;
+
+    img { width: 1rem; height: 1rem; }
+
+    &:hover { background: rgba(33,63,125,.04); }
+  }
+}
+
+// Filter dropdown
+.filterDropdown {
+  position: absolute;
+  top: 3rem;
+  left: 0;
+  background: $white;
+  border-radius: .5rem;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.12);
+  z-index: 50;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  min-width: 700px;
+}
+
+.filterField {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+
+  label {
+    font-size: .875rem;
+    font-weight: 500;
+    color: $text-dark;
+  }
+
+  input, select {
+    padding: .65rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: .5rem;
+    font-size: .875rem;
+    color: $text-main;
+    font-family: inherit;
+    outline: none;
+    background: $white;
+    appearance: none;
+
+    &:focus { border-color: $primary; }
+  }
+}
+
+.filterActions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: .5rem;
+}
+
+.resetBtn {
+  padding: .65rem 2rem;
+  border: 1px solid $text-main;
+  border-radius: 100px;
+  background: none;
+  color: $text-main;
+  font-size: .875rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.applyBtn {
+  padding: .65rem 2rem;
+  border: none;
+  border-radius: 100px;
+  background: $primary;
+  color: $white;
+  font-size: .875rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+// Pagination
+.paginate {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: .875rem;
+  color: $text-main;
+  flex-shrink: 0;
+}
+
+.left {
+  display: flex;
+  gap: .75rem;
+  align-items: center;
+}
+
+.pageSizeSelect {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(33, 63, 125, 0.1);
+  border-radius: .25rem;
+  padding: .4rem .75rem;
+
+  select {
+    background: none;
+    border: none;
+    outline: none;
+    font-size: .875rem;
+    color: $text-dark;
+    font-family: inherit;
+    cursor: pointer;
+    appearance: none;
+    padding-right: 1.25rem;
+  }
+
+  img {
+    position: absolute;
+    right: .5rem;
+    width: .875rem;
+    pointer-events: none;
+  }
+}
+
+.right {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+}
+
+.pageNav {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: .25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(33, 63, 125, 0.1);
+  border: none;
+  cursor: pointer;
+
+  img { width: .875rem; }
+
+  &:disabled { opacity: 0.4; cursor: not-allowed; }
+}
+
+.pageNum {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: .875rem;
+  color: $text-main;
+  font-family: inherit;
+  border-radius: .25rem;
+
+  &.activePage { color: $text-dark; font-weight: 600; }
+  &.ellipsis { cursor: default; }
+}
+
+.dateInputWrapper {
+  position: relative;
+
+  input {
+    width: 100%;
+    padding: .65rem 2.5rem .65rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: .5rem;
+    font-size: .875rem;
+    color: $text-main;
+    font-family: inherit;
+    outline: none;
+    background: $white;
+
+    // Hide the native browser calendar icon
+    &::-webkit-calendar-picker-indicator {
+      opacity: 0;
+      position: absolute;
+      right: 0;
+      width: 2rem;
+      cursor: pointer;
+    }
+
+    &:focus { border-color: $primary; }
+  }
+
+  .calendarIcon {
+    position: absolute;
+    right: .75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1rem;
+    height: 1rem;
+    pointer-events: none;
+  }
+}
